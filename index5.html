@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nebulosa Hub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+}
+
+.header{
+    text-align:center;
+    padding:15px;
+    background:#0d0d0d;
+    border-bottom:2px solid #a020f0;
+    color:#a020f0;
+    letter-spacing:3px;
+    font-weight:bold;
+}
+
+.contenedor{
+    display:flex;
+    height:calc(100vh - 60px);
+}
+
+.seccion-video{
+    flex:2;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.titulo-video{
+    font-size:28px;
+    margin-bottom:15px;
+    color:#a020f0;
+    text-align:center;
+}
+
+.video-wrapper{
+    width:100%;
+    max-width:900px;
+}
+
+.video-principal{
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:12px;
+    border:3px solid #a020f0;
+    box-shadow:0 0 25px #a020f0;
+    overflow:hidden;
+}
+
+.video-principal iframe{
+    width:100%;
+    height:100%;
+}
+
+.miniaturas{
+    margin-top:15px;
+    width:100%;
+    max-width:900px;
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.miniaturas img{
+    width:9.5%;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.miniaturas img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 10px #a020f0;
+}
+
+.seccion-registro{
+    flex:1;
+    background:#1c1c1c;
+    padding:30px;
+    border-left:2px solid #a020f0;
+    overflow:auto;
+}
+
+.seccion-registro h2{
+    text-align:center;
+    color:#a020f0;
+    margin-bottom:20px;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:none;
+    background:#2c2c2c;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#a020f0;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.barra-container{
+    display:none;
+    margin-top:15px;
+}
+
+progress{
+    width:100%;
+    height:20px;
+    accent-color:#a020f0;
+}
+
+.tarjeta{
+    background:#2a2a2a;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+    box-shadow:0 0 15px #a020f0;
+}
+
+@media(max-width:900px){
+    .contenedor{
+        flex-direction:column;
+    }
+    .seccion-registro{
+        border-left:none;
+        border-top:2px solid #a020f0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">NEBULOSA HUB</div>
+
+<div class="contenedor">
+
+<div class="seccion-video">
+
+<div class="titulo-video" id="tituloVideo">
+Official Trailer
+</div>
+
+<div class="video-wrapper">
+<div class="video-principal">
+<iframe id="videoFrame"
+src="https://www.youtube.com/embed/eOrNdBpGMv8"
+frameborder="0"
+allowfullscreen></iframe>
+</div>
+</div>
+
+<div class="miniaturas">
+
+<img src="https://img.youtube.com/vi/eOrNdBpGMv8/hqdefault.jpg"
+onclick="cambiarVideo('eOrNdBpGMv8','Avengers Trailer')">
+
+<img src="https://img.youtube.com/vi/EXeTwQWrcwY/hqdefault.jpg"
+onclick="cambiarVideo('EXeTwQWrcwY','The Dark Knight Trailer')">
+
+<img src="https://img.youtube.com/vi/8ugaeA-nMTc/hqdefault.jpg"
+onclick="cambiarVideo('8ugaeA-nMTc','Joker Trailer')">
+
+<img src="https://img.youtube.com/vi/zSWdZVtXT7E/hqdefault.jpg"
+onclick="cambiarVideo('zSWdZVtXT7E','Interstellar Trailer')">
+
+<img src="https://img.youtube.com/vi/TcMBFSGVi1c/hqdefault.jpg"
+onclick="cambiarVideo('TcMBFSGVi1c','Endgame Trailer')">
+
+<img src="https://img.youtube.com/vi/6ZfuNTqbHE8/hqdefault.jpg"
+onclick="cambiarVideo('6ZfuNTqbHE8','Infinity War Trailer')">
+
+<img src="https://img.youtube.com/vi/YoHD9XEInc0/hqdefault.jpg"
+onclick="cambiarVideo('YoHD9XEInc0','Inception Trailer')">
+
+<img src="https://img.youtube.com/vi/t433PEQGErc/hqdefault.jpg"
+onclick="cambiarVideo('t433PEQGErc','Lion King Trailer')">
+
+<img src="https://img.youtube.com/vi/60ItHLz5WEA/hqdefault.jpg"
+onclick="cambiarVideo('60ItHLz5WEA','Faded - Alan Walker')">
+
+<img src="https://img.youtube.com/vi/jfKfPfyJRdk/hqdefault.jpg"
+onclick="cambiarVideo('jfKfPfyJRdk','LoFi Hip Hop')">
+
+</div>
+</div>
+
+<div class="seccion-registro">
+
+<h2>Registro de Perfil</h2>
+
+<input type="text" id="nombre" placeholder="Nombre">
+<input type="number" id="edad" placeholder="Edad">
+
+<select id="genero">
+<option value="">Género</option>
+<option>Femenino</option>
+<option>Masculino</option>
+<option>Otro</option>
+</select>
+
+<input type="text" id="pasatiempos" placeholder="Pasatiempos">
+<input type="number" id="numero" placeholder="Número favorito">
+
+<button onclick="registrarUsuario()">Registrar Usuario</button>
+
+<div class="barra-container" id="barraBox">
+<p>Cargando perfil...</p>
+<progress id="barra" value="0" max="100"></progress>
+</div>
+
+<div id="resultado"></div>
+
+</div>
+</div>
+
+<script>
+
+function cambiarVideo(id,titulo){
+document.getElementById("videoFrame").src =
+"https://www.youtube.com/embed/" + id;
+document.getElementById("tituloVideo").innerText = titulo;
+}
+
+function registrarUsuario(){
+
+let nombre=document.getElementById("nombre").value;
+let edad=document.getElementById("edad").value;
+let genero=document.getElementById("genero").value;
+let pasatiempos=document.getElementById("pasatiempos").value;
+let numero=document.getElementById("numero").value;
+
+if(!nombre||!edad||!genero||!pasatiempos||!numero){
+alert("Completa todos los campos");
+return;
+}
+
+let barraBox=document.getElementById("barraBox");
+let barra=document.getElementById("barra");
+barraBox.style.display="block";
+barra.value=0;
+
+let progreso=0;
+
+let intervalo=setInterval(()=>{
+progreso++;
+barra.value=progreso;
+
+if(progreso>=100){
+clearInterval(intervalo);
+barraBox.style.display="none";
+
+let usuario={
+nombre,edad,genero,pasatiempos,numero
+};
+
+guardarUsuario(usuario);
+mostrarUsuario(usuario);
+limpiarFormulario();
+}
+
+},300);
+}
+
+function guardarUsuario(usuario){
+let usuarios=JSON.parse(localStorage.getItem("usuarios"))||[];
+usuarios.push(usuario);
+localStorage.setItem("usuarios",JSON.stringify(usuarios));
+}
+
+function mostrarUsuario(usuario){
+let contenedor=document.getElementById("resultado");
+
+let tarjeta=document.createElement("div");
+tarjeta.classList.add("tarjeta");
+
+tarjeta.innerHTML=`
+<h3 style="color:#a020f0;">Perfil Registrado</h3>
+<p><b>Nombre:</b> ${usuario.nombre}</p>
+<p><b>Edad:</b> ${usuario.edad}</p>
+<p><b>Género:</b> ${usuario.genero}</p>
+<p><b>Pasatiempos:</b> ${usuario.pasatiempos}</p>
+<p><b>Número favorito:</b> ${usuario.numero}</p>
+`;
+
+contenedor.appendChild(tarjeta);
+}
+
+window.onload=function(){
+let usuarios=JSON.parse(localStorage.getItem("usuarios"))||[];
+usuarios.forEach(usuario=>mostrarUsuario(usuario));
+}
+
+function limpiarFormulario(){
+document.getElementById("nombre").value="";
+document.getElementById("edad").value="";
+document.getElementById("genero").value="";
+document.getElementById("pasatiempos").value="";
+document.getElementById("numero").value="";
+}
+
+</script>
+
+</body>
+</html>
