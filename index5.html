@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nebulosa Hub</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#0f0f1a;
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:15px;
+    font-size:20px;
+    letter-spacing:3px;
+    color:#b26cff;
+    border-bottom:1px solid #6a00ff;
+}
+
+.layout{
+    display:flex;
+    padding:20px;
+    gap:20px;
+}
+
+/* IZQUIERDA */
+.left{ flex:2; }
+
+.video-container{
+    background:#141426;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 0 25px rgba(128,0,255,0.3);
+}
+
+.video-wrapper{
+    position:relative;
+    width:100%;
+    padding-top:56.25%;
+}
+
+.video-wrapper iframe{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border-radius:12px;
+}
+
+/* MINIATURAS */
+.thumbnails{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    overflow-x:auto;
+}
+
+.thumbnails img{
+    width:170px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+    border:2px solid transparent;
+}
+
+.thumbnails img:hover{
+    transform:scale(1.08);
+    border:2px solid #a855f7;
+    box-shadow:0 0 15px #a855f7;
+}
+
+/* DERECHA */
+.right{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.card{
+    background:#141426;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(128,0,255,0.2);
+}
+
+.card h3{
+    margin-top:0;
+    color:#b26cff;
+}
+
+input, select{
+    width:100%;
+    padding:8px;
+    margin-bottom:10px;
+    border-radius:8px;
+    border:none;
+    background:#1f1f35;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:linear-gradient(90deg,#6a00ff,#a855f7);
+    border:none;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    box-shadow:0 0 15px #a855f7;
+}
+
+/* BARRA DE CARGA */
+.loading-box{
+    display:none;
+    margin-top:10px;
+}
+
+.progress-bg{
+    width:100%;
+    background:#1f1f35;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0%;
+    height:20px;
+    background:linear-gradient(90deg,#6a00ff,#a855f7);
+    text-align:center;
+    font-size:12px;
+    line-height:20px;
+    color:white;
+}
+
+/* COMUNIDAD */
+.user-card{
+    background:#1f1f35;
+    padding:10px;
+    border-radius:10px;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>NEBULOSA HUB</header>
+
+<div class="layout">
+
+<!-- IZQUIERDA -->
+<div class="left">
+
+<div class="video-container">
+<div class="video-wrapper">
+<iframe id="player"
+src="https://www.youtube.com/embed/7TavVZMewpY"
+allowfullscreen></iframe>
+</div>
+</div>
+
+<div class="thumbnails">
+
+<img src="https://img.youtube.com/vi/7TavVZMewpY/0.jpg"
+onclick="changeVideo('7TavVZMewpY')">
+
+<img src="https://img.youtube.com/vi/eOrNdBpGMv8/0.jpg"
+onclick="changeVideo('eOrNdBpGMv8')">
+
+<img src="https://img.youtube.com/vi/EXeTwQWrcwY/0.jpg"
+onclick="changeVideo('EXeTwQWrcwY')">
+
+<img src="https://img.youtube.com/vi/YoHD9XEInc0/0.jpg"
+onclick="changeVideo('YoHD9XEInc0')">
+
+<img src="https://img.youtube.com/vi/zSWdZVtXT7E/0.jpg"
+onclick="changeVideo('zSWdZVtXT7E')">
+
+<img src="https://img.youtube.com/vi/JfVOs4VSpmA/0.jpg"
+onclick="changeVideo('JfVOs4VSpmA')">
+
+<img src="https://img.youtube.com/vi/zAGVQLHvwOY/0.jpg"
+onclick="changeVideo('zAGVQLHvwOY')">
+
+<img src="https://img.youtube.com/vi/sfM7_JLk-84/0.jpg"
+onclick="changeVideo('sfM7_JLk-84')">
+
+<img src="https://img.youtube.com/vi/RFinNxS5KN4/0.jpg"
+onclick="changeVideo('RFinNxS5KN4')">
+
+<img src="https://img.youtube.com/vi/uelHwf8o7_U/0.jpg"
+onclick="changeVideo('uelHwf8o7_U')">
+
+</div>
+
+</div>
+
+<!-- DERECHA -->
+<div class="right">
+
+<div class="card">
+<h3>Crear Perfil</h3>
+
+<input type="text" id="name" placeholder="Nombre de usuario">
+<input type="number" id="age" placeholder="Edad">
+
+<select id="gender">
+<option value="">Selecciona género</option>
+<option>Femenino</option>
+<option>Masculino</option>
+<option>Otro</option>
+</select>
+
+<input type="text" id="hobby" placeholder="Pasatiempos">
+<input type="number" id="fav" placeholder="Número favorito">
+
+<button onclick="createUser()">Activar Perfil</button>
+
+<div class="loading-box" id="loadingBox">
+<p>Cargando perfil...</p>
+<div class="progress-bg">
+<div class="progress-bar" id="progressBar">0%</div>
+</div>
+</div>
+
+</div>
+
+<div class="card">
+<h3>Comunidad Activa</h3>
+<div id="community"></div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function changeVideo(id){
+    document.getElementById("player").src =
+    "https://www.youtube.com/embed/" + id;
+}
+
+function createUser(){
+    let name=document.getElementById("name").value;
+    let age=document.getElementById("age").value;
+    let gender=document.getElementById("gender").value;
+    let hobby=document.getElementById("hobby").value;
+    let fav=document.getElementById("fav").value;
+
+    if(name==""||age==""||gender==""||hobby==""||fav==""){
+        alert("Completa todos los campos");
+        return;
+    }
+
+    document.getElementById("loadingBox").style.display="block";
+
+    let progress=0;
+    let bar=document.getElementById("progressBar");
+
+    let interval=setInterval(()=>{
+        progress++;
+        bar.style.width=progress+"%";
+        bar.innerText=progress+"%";
+
+        if(progress>=100){
+            clearInterval(interval);
+
+            let userCard=`
+            <div class="user-card">
+            <strong>${name}</strong><br>
+            📌 ${age} años<br>
+            📌 ${gender}<br>
+            📌 ${hobby}<br>
+            📌 Número favorito: ${fav}
+            </div>`;
+
+            document.getElementById("community").innerHTML+=userCard;
+
+            document.getElementById("loadingBox").style.display="none";
+            bar.style.width="0%";
+            bar.innerText="0%";
+        }
+    },30);
+}
+</script>
+
+</body>
+</html>
